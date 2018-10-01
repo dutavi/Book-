@@ -14,6 +14,17 @@
   <strong>Descriptions:</strong>
   <%= @book.descriptions %>
 </p>
+<p>
+<strong>Cover:</strong>
+<%= image_tag url_for(@book.cover) %>
+</p>
+
+<p>
+<strong>Related Images:</strong>
+<% @book.realated_images.each do |image| %>
+<%= image_tag url_for(image) %>
+<% end %>
+</p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

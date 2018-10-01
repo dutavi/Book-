@@ -20,6 +20,24 @@
   <div class="field">
     <%= form.label :descriptions %>
     <%= form.text_area :descriptions %>
+  </div
+  
+   <div class="field">
+    <%= form.label :cover %>
+    <%= form.file_field :cover %>
+    <% if book.cover.present? %>
+    <%= image_tag url_for(book.cover) %>
+    <% end %>
+  </div>
+  
+   <div class="field">
+    <%= form.label :realated_images%>
+    <%= form.file_field :realated_images, multiple: true %>
+    <% if book.realated_images.present? %>
+      <% book.realated_images.each do |image| %>
+       <%= image_tag url_for(image)%>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="actions">

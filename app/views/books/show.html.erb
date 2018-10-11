@@ -11,19 +11,18 @@
 </p>
 
 <p>
-  <strong>Descriptions:</strong>
-  <%= @book.descriptions %>
+  <strong>Description:</strong>
+  <%= @book.description %>
 </p>
 <p>
-<strong>Cover:</strong>
-<%= image_tag url_for(@book.cover) %>
+  <strong>Cover:</strong>
+  <%= image_tag url_for(@book.cover), size: "200x200" %>
 </p>
-
 <p>
-<strong>Related Images:</strong>
-<% @book.realated_images.each do |image| %>
-<%= image_tag url_for(image) %>
-<% end %>
+  <strong>Related Images:</strong>
+  <% @book.related_images.each do |image| %>
+    <%= image_tag url_for(image), size: "100x100" %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |

@@ -5,7 +5,11 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.where(user_id: current_user.id).all
+    # if params [:query].present? 
+    @books = Book.where(user_id: current_user.id).where("`title` LIKE '%#{params[:query]}%'")
+    # else 
+    # @books = Book.where(user_id: current_user.id).all
+    # end 
   end
 
   # GET /books/1
@@ -51,7 +55,7 @@ class BooksController < ApplicationController
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end  
 
   # DELETE /books/1
   # DELETE /books/1.json
@@ -64,13 +68,13 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.where(user_id: current_user.id).find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.where(user_id: current_user.id).find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:title, :descriptions, :cover, realated_images: [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def book_params
+    params.require(:book).permit(:title, :description, :cover, related_images: [])
+  end
 end

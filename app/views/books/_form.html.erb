@@ -11,31 +11,30 @@
     </div>
   <% end %>
 
-
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :descriptions %>
-    <%= form.text_area :descriptions %>
-  </div
-  
-   <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
     <%= form.label :cover %>
     <%= form.file_field :cover %>
-    <% if book.cover.present? %>
-    <%= image_tag url_for(book.cover) %>
+    <% if book.cover.attached? %>
+      <%= image_tag url_for(book.cover), size: "200x200" %>
     <% end %>
   </div>
-  
-   <div class="field">
-    <%= form.label :realated_images%>
-    <%= form.file_field :realated_images, multiple: true %>
-    <% if book.realated_images.present? %>
-      <% book.realated_images.each do |image| %>
-       <%= image_tag url_for(image)%>
+
+  <div class="field">
+    <%= form.label :related_images %>
+    <%= form.file_field :related_images, multiple: true %>
+    <% if book.related_images.any? &:attached? %>
+      <% book.related_images.each do |image| %>
+        <%= image_tag url_for(image), size: "100x100" %>
       <% end %>
     <% end %>
   </div>

@@ -1,6 +1,10 @@
-<h1>Editing Book</h1>
-
-<%= render 'form', book: @book %>
-
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+<div class="container">
+  <div class="row">
+    <h1>Editing Book</h1>
+  </div>
+  <%= render "form", book: @book %>
+  <div class="row">
+    <%= link_to "Back", books_path, class: "btn btn-secondary btn-sm" %> |
+    <%= link_to "Show", @book, class: "btn btn-info btn-sm" %>
+  </div>
+</div>

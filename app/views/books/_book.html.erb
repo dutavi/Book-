@@ -13,5 +13,10 @@
         <small class="text-muted">9 mins</small>
       </div>
     </div>
+    <div class="card-footer min-height-49">
+       <% book.genre_list.each do |genre| %>
+        <small class="badge badge-secondary"><%= genre %></small>
+        <% end %>
+    </div>
   </div>
 </div>

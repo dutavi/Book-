@@ -10,12 +10,10 @@
     width: 100%!important;
     height: 700px;
 }
-.mh-400px{
-  
-}
-a {
- display: none;
-}
+
+// a {
+// display: none;
+// }
 section.jumbotron.text-center {
     background-color: #262626;
 }
@@ -33,4 +31,7 @@ h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 }
 .text-muted {
   color: white;
-}
+ }
+.min-height-49 {
+   min-height: 49px;
+ }

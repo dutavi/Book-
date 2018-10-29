@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   def index
     # if params [:query].present? 
     @books = Book.where(user_id: current_user.id).where("`title` LIKE '%#{params[:query]}%'")
-    # else 
+    # else  
     # @books = Book.where(user_id: current_user.id).all
     # end 
   end
@@ -75,6 +75,6 @@ class BooksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def book_params
-    params.require(:book).permit(:title, :description, :cover, related_images: [])
+    params.require(:book).permit(:title, :description, :genre_list, :cover, related_images: [])
   end
 end

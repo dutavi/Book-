@@ -21,3 +21,12 @@ images = Dir["db/seeds/*.jpg"]
   end
   book.save && puts("Created #{book.id} - #{book.title}")
 end
+
+Book.all.each do |book|
+ tags = []
+ tag_num = rand(1..3)
+ tag_num.times { tags.push(Faker::Book.genre) }
+ puts tags.inspect 
+ book.genre_list = tags.uniq.join(" , ")
+ book.save
+end

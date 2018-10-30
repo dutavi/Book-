@@ -5,11 +5,13 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    # if params [:query].present? 
+     if params[:query].present?
     @books = Book.where(user_id: current_user.id).where("`title` LIKE '%#{params[:query]}%'")
-    # else  
-    # @books = Book.where(user_id: current_user.id).all
-    # end 
+    elsif params[:tag].present?
+     @books = Book.where(user_id: current_user.id).tagged_with([params[:tag]])
+     else  
+     @books = Book.where(user_id: current_user.id).all
+     end 
   end
 
   # GET /books/1

@@ -15,7 +15,7 @@
     </div>
     <div class="card-footer min-height-49">
        <% book.genre_list.each do |genre| %>
-        <small class="badge badge-secondary"><%= genre %></small>
+          <%= link_to genre, books_path(tag: genre), class: "badge badge-secondary"  %>
         <% end %>
     </div>
   </div>

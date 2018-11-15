@@ -1,6 +1,6 @@
 <section class="jumbotron text-center">
   <div class="container">
-    <h1 class="jumbotron-heading">Album Example</h1>
+    <h1 class="jumbotron-heading">Album example</h1>
     <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
     <p>
       <%= link_to "New Book", new_book_path, class: "btn btn-primary my-2 text-white" %>
@@ -14,16 +14,27 @@
         <div class="input-group mb-3">
           <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Book's title", aria: { label: "Book's title", describedby: "button-addon2" } %>
           <div class="input-group-append">
-            <%= f.submit "Search", class: "btn btn-outline-secondary"%>
+            <%= f.submit "Search", class: "btn btn-outline-secondary" %>
           </div>
         </div>
       </div>
     <% end %>
+    <div class="row books">
+      <%= render @books %>
+    </div>
     <div class="row">
-      <% @books.each do |book| %>
-        <%= render partial: "book", locals: { book: book } %>
-      <% end %>
+      <%= paginate @books, remote: true %>
     </div>
   </div>
 </div>
- 
+<% content_for :in_page_js do %>
+  <script>
+    $(document).ready(function () {
+      $(".books").infiniteScroll({
+        path: ".pagination .page-item a[rel='next']",
+        append: ".book",
+        hideNav: ".pagination"
+      })
+    })
+  </script>
+<% end %>

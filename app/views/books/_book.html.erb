@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 books">
   <div class="card mb-4 shadow-sm">
     <% image_url = book.cover.attached? ? url_for(book.cover) : "" %>
     <img class="card-img-top" data-src="<%= image_url %>" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="<%= image_url %>" data-holder-rendered="true">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="card-footer min-height-49">
-       <% book.genre_list.each do |genre| %>
+       <% book.genre_list.each do |genre| %> 
           <%= link_to genre, books_path(tag: genre), class: "badge badge-secondary"  %>
         <% end %>
     </div>

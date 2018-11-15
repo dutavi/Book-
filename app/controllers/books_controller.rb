@@ -5,13 +5,15 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+      @books = Book.where(user_id: current_user.id)
      if params[:query].present?
-    @books = Book.where(user_id: current_user.id).where("`title` LIKE '%#{params[:query]}%'")
+    @books = Book.where("`title` LIKE '%#{params[:query]}%'")
     elsif params[:tag].present?
-     @books = Book.where(user_id: current_user.id).tagged_with([params[:tag]])
+     @books = Book.tagged_with([params[:tag]])
      else  
-     @books = Book.where(user_id: current_user.id).all
+     @books = Book.all
      end 
+     @books = @books.page(params[:page]).per(6)
   end
 
   # GET /books/1
@@ -80,3 +82,4 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :description, :genre_list, :cover, related_images: [])
   end
 end
+  
